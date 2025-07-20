@@ -1,0 +1,59 @@
+@import url(https://fonts.bunny.net/css?family=sofia-sans:100,100i,200,300,400,500,600,700,800,900);
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    'Sofia Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --color-gray-50: oklch(0.98 0.001 245); /* near white */
+  --color-gray-100: oklch(0.96 0.002 250);
+  --color-gray-200: oklch(0.92 0.004 252);
+  --color-gray-300: oklch(0.86 0.008 253);
+  --color-gray-400: oklch(0.7 0.018 254);
+  --color-gray-500: oklch(0.54 0.025 255); /* base neutral gray */
+  --color-gray-600: oklch(0.43 0.03 256);
+  --color-gray-700: oklch(0.35 0.034 257);
+  --color-gray-800: oklch(0.26 0.034 258);
+  --color-gray-900: oklch(0.19 0.032 258);
+  --color-gray-950: oklch(0.115 0.025 259);
+}
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400;
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-200;
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
