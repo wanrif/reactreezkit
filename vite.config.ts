@@ -17,6 +17,7 @@ export default defineConfig({
   define: { 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) },
   resolve: {
     alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
       '@components': fileURLToPath(
         new URL('./src/components', import.meta.url)

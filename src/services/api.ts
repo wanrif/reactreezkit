@@ -1,15 +1,9 @@
-import clientRequest from '@lib/request'
+import clientRequest from '@services/request'
+
+import type { ApiResponse, ICallApi } from '@/types'
 
 const endpoints = {
   ping: '/honotreez/ping',
-}
-
-interface ICallApi {
-  endpoint: string
-  method: string
-  data?: unknown
-  headers?: object
-  params?: object
 }
 
 const callApi = async <T>({
@@ -18,16 +12,19 @@ const callApi = async <T>({
   data,
   headers,
   params,
-}: ICallApi): Promise<T> => {
+}: ICallApi): Promise<ApiResponse<T>> => {
   try {
-    const response = await clientRequest.request<T>({
+    const response = await clientRequest.request<ApiResponse<T>>({
       url: endpoint,
       method,
       data,
       headers,
       params,
     })
-    return response.data
+    return {
+      data: response.data?.data,
+      message: response.data?.message,
+    }
   } catch (error) {
     console.error('API call error:', error)
     return Promise.reject(error)

@@ -1,7 +1,7 @@
-import axios, { type InternalAxiosRequestConfig } from 'axios'
+import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios'
 
 const clientRequest = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -13,7 +13,7 @@ clientRequest.interceptors.request.use(
     // Add any request interceptors here if needed
     return config
   },
-  (error) => {
+  (error: AxiosError) => {
     // Handle request errors here
     console.error('Request error:', error)
     return Promise.reject(error)
@@ -26,7 +26,7 @@ clientRequest.interceptors.response.use(
     console.log('Response received:', response)
     return response
   },
-  (error) => {
+  (error: AxiosError) => {
     // Handle response errors here
     console.error('Response error:', error)
     return Promise.reject(error)
